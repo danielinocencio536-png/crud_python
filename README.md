@@ -104,6 +104,7 @@ python etapa4_interface.py
 
 ## Limitações e próximos passos
 
+- [ ] **Etapa 5 - versão web** (HTML + CSS + Flask, usando o mesmo banco SQLite), sugestão do feedback de um colega: a interface atual é simples e só funciona no computador
 - [ ] A interface ainda não tem **buscar** e **atualizar** (só existem no console da etapa 3)
 - [ ] Para excluir na interface é preciso selecionar o texto da linha; trocar por uma tabela clicável
 - [ ] Validar o formato do email e do telefone
