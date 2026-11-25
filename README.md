@@ -59,7 +59,9 @@ ID 2 | Nome: Joao Souza | Tel: 21988887777 | Email: joao.souza@email.com
 ```
 
 ### Etapa 4: interface gráfica
-<!-- Coloque aqui um print da janela: ![Interface](print_interface.png) -->
+3 clientes cadastrados pela janela e listados com o botão **Listar**:
+
+![Interface da etapa 4](print_interface.png)
 
 ## Estrutura
 
@@ -106,3 +108,5 @@ python etapa4_interface.py
 - [ ] Para excluir na interface é preciso selecionar o texto da linha; trocar por uma tabela clicável
 - [ ] Validar o formato do email e do telefone
 - [ ] Impedir cadastro duplicado (mesmo email)
+- [ ] O texto do botão "Excluir selecionado" fica cortado na janela de 560px
+- [ ] Os campos perdem o texto de dica (Nome, Telefone, Email) depois de cadastrar
