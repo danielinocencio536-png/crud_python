@@ -7,3 +7,6 @@ __pycache__/
 # Dados gerados em runtime
 clientes.db
 clientes.txt
+
+# Ambiente virtual
+.venv/

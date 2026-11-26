@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{ titulo }} · Cadastro de Clientes{% endblock %}
+
+{% block conteudo %}
+<h1>{{ titulo }}</h1>
+
+{% set nome, telefone, email = cliente %}
+<form method="post" class="formulario">
+  <label for="nome">Nome <span class="obrigatorio">*</span></label>
+  <input id="nome" name="nome" value="{{ nome }}" placeholder="Ex.: Maria Silva"
+         required autofocus>
+
+  <label for="telefone">Telefone</label>
+  <input id="telefone" name="telefone" value="{{ telefone }}" type="tel"
+         placeholder="Ex.: (11) 99999-0000" inputmode="tel">
+
+  <label for="email">Email</label>
+  <input id="email" name="email" value="{{ email }}" type="email"
+         placeholder="Ex.: maria@email.com">
+
+  <div class="botoes">
+    <button type="submit" class="botao botao-principal">
+      {% if id_cli %}Salvar alterações{% else %}Cadastrar{% endif %}
+    </button>
+    <a href="{{ url_for('index') }}" class="botao botao-claro">Cancelar</a>
+  </div>
+</form>
+{% endblock %}

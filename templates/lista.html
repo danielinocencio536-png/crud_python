@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block conteudo %}
+<div class="barra">
+  <form class="busca" method="get" action="{{ url_for('index') }}" role="search">
+    <input type="search" name="q" value="{{ termo }}" placeholder="Buscar por nome..."
+           aria-label="Buscar por nome">
+    <button type="submit" class="botao">Buscar</button>
+    {% if termo %}<a href="{{ url_for('index') }}" class="botao botao-claro">Ver todos</a>{% endif %}
+  </form>
+  <a href="{{ url_for('novo') }}" class="botao botao-principal">+ Novo cliente</a>
+</div>
+
+{% if termo %}
+  <p class="info">{{ clientes|length }} cliente(s) encontrado(s) para "{{ termo }}".</p>
+{% endif %}
+
+{% if clientes %}
+<table class="tabela">
+  <thead>
+    <tr><th>ID</th><th>Nome</th><th>Telefone</th><th>Email</th><th><span class="oculto">Ações</span></th></tr>
+  </thead>
+  <tbody>
+    {% for id_cli, nome, telefone, email in clientes %}
+    <tr>
+      <td data-rotulo="ID">{{ id_cli }}</td>
+      <td data-rotulo="Nome">{{ nome }}</td>
+      <td data-rotulo="Telefone">{{ telefone or "—" }}</td>
+      <td data-rotulo="Email">{{ email or "—" }}</td>
+      <td class="acoes">
+        <a href="{{ url_for('editar', id_cli=id_cli) }}" class="botao botao-claro">Editar</a>
+        {# o nome vai num atributo data-*, assim aspas no nome não quebram o JavaScript #}
+        <form method="post" action="{{ url_for('excluir', id_cli=id_cli) }}"
+              data-cliente="ID {{ id_cli }} - {{ nome }}"
+              onsubmit="return confirm('Excluir o cliente ' + this.dataset.cliente + '?');">
+          <button type="submit" class="botao botao-perigo">Excluir</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+  <p class="vazio">
+    {% if termo %}Nenhum cliente encontrado.{% else %}Nenhum cliente cadastrado ainda.{% endif %}
+  </p>
+{% endif %}
+{% endblock %}

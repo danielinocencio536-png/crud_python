@@ -1,0 +1,138 @@
+/* Etapa 5 - estilo da versão web (cores parecidas com a interface da etapa 4) */
+:root {
+  --fundo: #1e1e1e;
+  --painel: #2b2b2b;
+  --borda: #3a3a3a;
+  --texto: #dce4ee;
+  --texto-fraco: #9aa4b0;
+  --azul: #1f6aa5;
+  --azul-hover: #185486;
+  --vermelho: #a83232;
+  --vermelho-hover: #7a2424;
+  --verde: #2e7d4f;
+  --raio: 8px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--fundo);
+  color: var(--texto);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.topo {
+  background: var(--painel);
+  border-bottom: 1px solid var(--borda);
+  padding: 14px 20px;
+}
+.marca { color: var(--texto); font-size: 20px; font-weight: 700; text-decoration: none; }
+
+.conteudo { max-width: 900px; margin: 0 auto; padding: 20px; }
+
+h1 { font-size: 22px; margin: 4px 0 16px; }
+
+/* ---------- botões ---------- */
+.botao {
+  display: inline-block;
+  border: 0;
+  border-radius: var(--raio);
+  padding: 9px 16px;
+  background: var(--azul);
+  color: #fff;
+  font: inherit;
+  font-size: 15px;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.botao:hover { background: var(--azul-hover); }
+.botao-principal { font-weight: 600; }
+.botao-claro { background: var(--borda); }
+.botao-claro:hover { background: #4a4a4a; }
+.botao-perigo { background: var(--vermelho); }
+.botao-perigo:hover { background: var(--vermelho-hover); }
+.botao:focus-visible, input:focus-visible { outline: 2px solid #6fb3ff; outline-offset: 2px; }
+
+/* ---------- barra de busca ---------- */
+.barra { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 16px; }
+.busca { display: flex; gap: 8px; flex: 1; min-width: 260px; }
+.busca input { flex: 1; }
+
+input {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  background: #343638;
+  color: var(--texto);
+  font: inherit;
+}
+input::placeholder { color: var(--texto-fraco); }
+
+/* ---------- mensagens ---------- */
+.aviso { padding: 10px 14px; border-radius: var(--raio); margin: 0 0 16px; }
+.aviso-ok { background: rgba(46, 125, 79, .25); border: 1px solid var(--verde); }
+.aviso-erro { background: rgba(168, 50, 50, .25); border: 1px solid var(--vermelho); }
+.info, .vazio { color: var(--texto-fraco); }
+.vazio { text-align: center; padding: 40px 0; }
+
+/* ---------- tabela ---------- */
+.tabela {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--painel);
+  border-radius: var(--raio);
+  overflow: hidden;
+}
+.tabela th, .tabela td { padding: 10px 12px; text-align: left; }
+.tabela th { background: var(--borda); font-weight: 600; font-size: 14px; }
+.tabela tbody tr { border-top: 1px solid var(--borda); }
+.tabela tbody tr:hover { background: #333; }
+.acoes { display: flex; gap: 8px; justify-content: flex-end; }
+.acoes form { margin: 0; }
+.oculto { position: absolute; left: -9999px; }
+
+/* ---------- formulário ---------- */
+.formulario {
+  background: var(--painel);
+  border-radius: var(--raio);
+  padding: 20px;
+  display: grid;
+  gap: 6px;
+  max-width: 520px;
+}
+.formulario label { margin-top: 8px; font-weight: 600; }
+.obrigatorio { color: #ff7b7b; }
+.botoes { display: flex; gap: 8px; margin-top: 16px; }
+
+/* ---------- celular: cada cliente vira um cartão ---------- */
+@media (max-width: 640px) {
+  .conteudo { padding: 14px; }
+  .barra { flex-direction: column; align-items: stretch; }
+  .busca { min-width: 0; }
+  .barra > .botao { text-align: center; }
+
+  .tabela thead { display: none; }
+  .tabela, .tabela tbody, .tabela tr, .tabela td { display: block; width: 100%; }
+  .tabela { background: none; }
+  .tabela tbody tr {
+    background: var(--painel);
+    border: 0;
+    border-radius: var(--raio);
+    margin-bottom: 12px;
+    padding: 8px 4px;
+  }
+  .tabela td { padding: 4px 12px; }
+  .tabela td[data-rotulo]::before {
+    content: attr(data-rotulo) ": ";
+    color: var(--texto-fraco);
+    font-size: 14px;
+  }
+  .tabela td.acoes { display: flex; gap: 8px; padding-top: 8px; }
+  .acoes > * { flex: 1; }
+  .acoes .botao { width: 100%; text-align: center; }
+}
